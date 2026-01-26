@@ -24,4 +24,7 @@ public class TaskController {
     public List<Task> GetAllTasks(){
         return taskService.getAllTasks();
     }
+
+    public void getSomeProducts(){}
+
 }
