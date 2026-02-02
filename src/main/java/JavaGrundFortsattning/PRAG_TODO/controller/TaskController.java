@@ -1,16 +1,17 @@
 package JavaGrundFortsattning.PRAG_TODO.controller;
 
+import JavaGrundFortsattning.PRAG_TODO.dto.CreateTaskDto;
 import JavaGrundFortsattning.PRAG_TODO.entity.Task;
 import JavaGrundFortsattning.PRAG_TODO.service.TaskService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/Task")
+@RequestMapping("/tasks")
 public class TaskController {
     
     private final TaskService taskService;
@@ -23,5 +24,19 @@ public class TaskController {
     @GetMapping
     public List<Task> GetAllTasks(){
         return taskService.getAllTasks();
+    }
+
+    @PostMapping()
+    public ResponseEntity<?> createTask(@RequestBody CreateTaskDto createTaskDto){
+        try {
+            Task task = taskService.createTask(createTaskDto);
+            return ResponseEntity.status(HttpStatus.CREATED).body(task);
+        } catch (DataAccessException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Kunde inte spara task i databasen: " + e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Ett oväntat fel uppstod: " + e.getMessage());
+        }
     }
 }

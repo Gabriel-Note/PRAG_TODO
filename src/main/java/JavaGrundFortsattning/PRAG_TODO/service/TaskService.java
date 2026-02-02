@@ -1,5 +1,6 @@
 package JavaGrundFortsattning.PRAG_TODO.service;
 
+import JavaGrundFortsattning.PRAG_TODO.dto.CreateTaskDto;
 import JavaGrundFortsattning.PRAG_TODO.entity.Task;
 import JavaGrundFortsattning.PRAG_TODO.repository.TaskRepository;
 import org.springframework.stereotype.Service;
@@ -22,5 +23,13 @@ public class TaskService {
             counter ++;
         }
         return allTasks;
+    }
+
+    public Task createTask(CreateTaskDto createTaskDto){
+
+        Task task = new Task();
+        task.setTask(createTaskDto.getName());
+
+        return taskRepository.save(task);
     }
 }
