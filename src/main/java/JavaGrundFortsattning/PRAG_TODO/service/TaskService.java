@@ -1,11 +1,13 @@
 package JavaGrundFortsattning.PRAG_TODO.service;
 
-import JavaGrundFortsattning.PRAG_TODO.dto.CreateTaskDto;
+import JavaGrundFortsattning.PRAG_TODO.dto.TaskDto;
 import JavaGrundFortsattning.PRAG_TODO.entity.Task;
 import JavaGrundFortsattning.PRAG_TODO.repository.TaskRepository;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TaskService {
@@ -25,11 +27,29 @@ public class TaskService {
         return allTasks;
     }
 
-    public Task createTask(CreateTaskDto createTaskDto){
+    public Task getTaskById(int id){
+        Optional<Task> optionalTask = taskRepository.findById(id);
+        if (optionalTask.isPresent()){
+            return optionalTask.get();
+        }
+        else {
+            throw new RuntimeException("Task not found with id: " +id);
+        }
+    }
+
+    public Task createTask(TaskDto taskDto){
 
         Task task = new Task();
-        task.setTask(createTaskDto.getName());
+        task.setTask(taskDto.getName());
 
+        return taskRepository.save(task);
+    }
+
+    public Task updateTask(int id, TaskDto taskDto){
+        String taskDescription = taskDto.getName();
+
+        Task task = getTaskById(id);
+        task.setTask(taskDescription);
         return taskRepository.save(task);
     }
 }
