@@ -1,12 +1,12 @@
 package JavaGrundFortsattning.PRAG_TODO.dto;
 
-public class CreateTaskDto {
+public class TaskDto {
     private String name;
 
-    public CreateTaskDto() {
+    public TaskDto() {
     }
 
-    public CreateTaskDto(String name) {
+    public TaskDto(String name) {
         this.name = name;
     }
 
@@ -17,4 +17,5 @@ public class CreateTaskDto {
     public void setName(String name) {
         this.name = name;
     }
+
 }
