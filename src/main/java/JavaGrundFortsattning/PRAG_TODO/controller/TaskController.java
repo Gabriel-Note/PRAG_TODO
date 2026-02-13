@@ -22,6 +22,7 @@ public class TaskController {
     }
 
     @GetMapping
+    @CrossOrigin(origins = "http://localhost:3000")
     public List<Task> GetAllTasks(){
         return taskService.getAllTasks();
     }
