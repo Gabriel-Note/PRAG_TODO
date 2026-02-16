@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String task;
 
     public Task() {

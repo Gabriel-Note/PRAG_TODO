@@ -1,6 +1,6 @@
 package JavaGrundFortsattning.PRAG_TODO.controller;
 
-import JavaGrundFortsattning.PRAG_TODO.dto.CreateTaskDto;
+import JavaGrundFortsattning.PRAG_TODO.dto.TaskDto;
 import JavaGrundFortsattning.PRAG_TODO.entity.Task;
 import JavaGrundFortsattning.PRAG_TODO.service.TaskService;
 import org.springframework.dao.DataAccessException;
@@ -22,14 +22,15 @@ public class TaskController {
     }
 
     @GetMapping
+    @CrossOrigin(origins = "http://localhost:3000")
     public List<Task> GetAllTasks(){
         return taskService.getAllTasks();
     }
 
     @PostMapping()
-    public ResponseEntity<?> createTask(@RequestBody CreateTaskDto createTaskDto){
+    public ResponseEntity<?> createTask(@RequestBody TaskDto taskDto){
         try {
-            Task task = taskService.createTask(createTaskDto);
+            Task task = taskService.createTask(taskDto);
             return ResponseEntity.status(HttpStatus.CREATED).body(task);
         } catch (DataAccessException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -39,4 +40,28 @@ public class TaskController {
                     .body("Ett oväntat fel uppstod: " + e.getMessage());
         }
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> editTask(@PathVariable Integer id,
+                                      @RequestBody TaskDto taskDto){
+        try{
+            Task task = taskService.updateTask(id, taskDto);
+            return ResponseEntity.status(HttpStatus.CREATED).body(task);
+
+        }
+        catch (DataAccessException e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Kunde inte ändra task i databasen" + e.getMessage());
+        }
+        catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Ett oväntat fel uppstod" + e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteTask(@PathVariable int id) {
+        taskService.deleteTask(id);
+    }
+
 }
