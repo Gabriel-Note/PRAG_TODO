@@ -1,14 +1,11 @@
 package JavaGrundFortsattning.PRAG_TODO.repository;
 
-import JavaGrundFortsattning.PRAG_TODO.entity.Product;
+import JavaGrundFortsattning.PRAG_TODO.entity.Task;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, UUID > {
-
-
-
+public interface TaskRepository extends JpaRepository<Task, Integer> {
 }
