@@ -21,7 +21,7 @@ public class TaskService {
         List<Task> allTasks = taskRepository.findAll();
         int counter = 0;
         for (Task x : allTasks){
-            System.out.println(counter + ": " + x.getTask());
+            System.out.println(counter + ": " + x.getDescription());
             counter ++;
         }
         return allTasks;
@@ -40,16 +40,16 @@ public class TaskService {
     public Task createTask(TaskDto taskDto){
 
         Task task = new Task();
-        task.setTask(taskDto.getName());
+        task.setDescription(taskDto.getDescription());
 
         return taskRepository.save(task);
     }
 
     public Task updateTask(int id, TaskDto taskDto){
-        String taskDescription = taskDto.getName();
+        String taskDescription = taskDto.getDescription();
 
         Task task = getTaskById(id);
-        task.setTask(taskDescription);
+        task.setDescription(taskDescription);
         return taskRepository.save(task);
     }
 }
