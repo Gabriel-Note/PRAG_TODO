@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -21,7 +20,6 @@ public class TaskController {
     public TaskController(TaskService taskService) {
         this.taskService = taskService;
     }
-
 
     @GetMapping
     @CrossOrigin(origins = "http://localhost:3000")
@@ -78,4 +76,8 @@ public class TaskController {
         }
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteTask(@PathVariable int id) {
+        taskService.deleteTask(id);
+    }
 }

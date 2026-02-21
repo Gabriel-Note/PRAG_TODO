@@ -67,4 +67,8 @@ public class TaskService {
             }
             return taskRepository.save(task);
     }
+
+    public void deleteTask(int id) {
+        taskRepository.deleteById(id);
+    }
 }
