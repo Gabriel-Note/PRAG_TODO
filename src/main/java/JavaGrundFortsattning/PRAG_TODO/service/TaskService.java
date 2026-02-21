@@ -52,4 +52,15 @@ public class TaskService {
         task.setDescription(taskDescription);
         return taskRepository.save(task);
     }
+
+    public Task makeCompletedOrNotCompleted(int id) {
+            Task task = getTaskById(id);
+            if (task.isCompleted()){
+                task.setCompleted(false);
+            }
+            else{
+                task.setCompleted(true);
+            }
+            return taskRepository.save(task);
+    }
 }
