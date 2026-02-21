@@ -6,6 +6,7 @@ import JavaGrundFortsattning.PRAG_TODO.repository.TaskRepository;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,14 +18,16 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
 
-    public List<Task> getAllTasks(){
+    public List<TaskDto> getAllTasks(){
         List<Task> allTasks = taskRepository.findAll();
-        int counter = 0;
-        for (Task x : allTasks){
-            System.out.println(counter + ": " + x.getDescription());
-            counter ++;
+        List<TaskDto> taskDtoList = new ArrayList<>();
+        for (Task task : allTasks){
+            TaskDto taskDto = new TaskDto();
+            taskDto.setId(task.getId());
+            taskDto.setDescription(task.getDescription());
+            taskDtoList.add(taskDto);
         }
-        return allTasks;
+        return taskDtoList;
     }
 
     public Task getTaskById(int id){

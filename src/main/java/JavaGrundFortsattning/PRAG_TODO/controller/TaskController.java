@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -21,9 +22,10 @@ public class TaskController {
         this.taskService = taskService;
     }
 
+
     @GetMapping
     @CrossOrigin(origins = "http://localhost:3000")
-    public List<Task> GetAllTasks(){
+    public List<TaskDto> getAllTasks(){
         return taskService.getAllTasks();
     }
 
