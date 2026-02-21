@@ -25,6 +25,7 @@ public class TaskService {
             TaskDto taskDto = new TaskDto();
             taskDto.setId(task.getId());
             taskDto.setDescription(task.getDescription());
+            taskDto.setCompleted(task.isCompleted());
             taskDtoList.add(taskDto);
         }
         return taskDtoList;

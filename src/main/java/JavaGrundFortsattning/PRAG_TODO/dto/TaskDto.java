@@ -3,6 +3,7 @@ package JavaGrundFortsattning.PRAG_TODO.dto;
 public class TaskDto {
     private Integer id;
     private String description;
+    private boolean completed;
 
     public TaskDto() {
     }
@@ -25,5 +26,13 @@ public class TaskDto {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 }
