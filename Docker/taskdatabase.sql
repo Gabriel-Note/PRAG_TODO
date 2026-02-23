@@ -24,9 +24,10 @@ DROP TABLE IF EXISTS `task`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `task` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `task` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `completed` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=210 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,7 +36,7 @@ CREATE TABLE `task` (
 
 LOCK TABLES `task` WRITE;
 /*!40000 ALTER TABLE `task` DISABLE KEYS */;
-INSERT INTO `task` VALUES (1,'frsvinner detta'),(2,'ut med hunden'),(3,'köpa mjölk från CityGross'),(4,'köpa mjölk från CityGross'),(5,'köpa mjölk från CityGross igen'),(6,'köpa mjölk från CityGross igen');
+INSERT INTO `task` VALUES (1,'ut med hunden',1),(2,'handla marmelad',0),(3,'Städa köket',0),(4,'köpa te från CityGross',0),(5,'köpa mer te från CityGross',0),(6,'köpa mjölk från ica',0),(7,'köpa mjöl',0),(8,'postwoman',0);
 /*!40000 ALTER TABLE `task` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -48,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-02-02 13:57:17
+-- Dump completed on 2026-02-23  9:24:30
