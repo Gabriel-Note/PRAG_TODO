@@ -6,6 +6,7 @@ import JavaGrundFortsattning.PRAG_TODO.repository.TaskRepository;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,14 +18,17 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
 
-    public List<Task> getAllTasks(){
+    public List<TaskDto> getAllTasks(){
         List<Task> allTasks = taskRepository.findAll();
-        int counter = 0;
-        for (Task x : allTasks){
-            System.out.println(counter + ": " + x.getTask());
-            counter ++;
+        List<TaskDto> taskDtoList = new ArrayList<>();
+        for (Task task : allTasks){
+            TaskDto taskDto = new TaskDto();
+            taskDto.setId(task.getId());
+            taskDto.setDescription(task.getDescription());
+            taskDto.setCompleted(task.isCompleted());
+            taskDtoList.add(taskDto);
         }
-        return allTasks;
+        return taskDtoList;
     }
 
     public Task getTaskById(int id){
@@ -40,16 +44,31 @@ public class TaskService {
     public Task createTask(TaskDto taskDto){
 
         Task task = new Task();
-        task.setTask(taskDto.getName());
+        task.setDescription(taskDto.getDescription());
 
         return taskRepository.save(task);
     }
 
     public Task updateTask(int id, TaskDto taskDto){
-        String taskDescription = taskDto.getName();
+        String taskDescription = taskDto.getDescription();
 
         Task task = getTaskById(id);
-        task.setTask(taskDescription);
+        task.setDescription(taskDescription);
         return taskRepository.save(task);
+    }
+
+    public Task makeCompletedOrNotCompleted(int id) {
+            Task task = getTaskById(id);
+            if (task.isCompleted()){
+                task.setCompleted(false);
+            }
+            else{
+                task.setCompleted(true);
+            }
+            return taskRepository.save(task);
+    }
+
+    public void deleteTask(int id) {
+        taskRepository.deleteById(id);
     }
 }
