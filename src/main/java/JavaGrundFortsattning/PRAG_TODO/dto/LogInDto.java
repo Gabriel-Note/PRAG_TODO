@@ -1,12 +1,12 @@
 package JavaGrundFortsattning.PRAG_TODO.dto;
 
-public class LogINDto {
+public class LogInDto {
     private String username;
     private String password;
 
-    public LogINDto() {}
+    public LogInDto() {}
 
-    public LogINDto(String username, String password) {
+    public LogInDto(String username, String password) {
         this.username = username;
         this.password = password;
     }
