@@ -3,16 +3,15 @@ package JavaGrundFortsattning.PRAG_TODO.service;
 import JavaGrundFortsattning.PRAG_TODO.dto.LogInDto;
 import JavaGrundFortsattning.PRAG_TODO.entity.LogIn;
 import JavaGrundFortsattning.PRAG_TODO.repository.LogInRepository;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LogInService {
+public class AuthService {
 
     private final LogInRepository logInRepository;
-    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    public LogInService(LogInRepository logInRepository) {
+    public AuthService(LogInRepository logInRepository) {
         this.logInRepository = logInRepository;
     }
 
@@ -28,7 +27,7 @@ public class LogInService {
 
         LogIn user = new LogIn();
         user.setUsername(dto.getUsername());
-        user.setPassword(passwordEncoder.encode(dto.getPassword()));
+        user.setPassword(dto.getPassword());
 
         logInRepository.save(user);
     }
@@ -40,7 +39,7 @@ public class LogInService {
             throw new RuntimeException("User not found");
         }
 
-        if (!passwordEncoder.matches(dto.getPassword(), user.getPassword())) {
+        if (!(dto.getPassword().matches( user.getPassword()))) {
             throw new RuntimeException("Wrong password");
         }
 

@@ -2,27 +2,29 @@ package JavaGrundFortsattning.PRAG_TODO.controller;
 
 import JavaGrundFortsattning.PRAG_TODO.dto.LogInDto;
 import JavaGrundFortsattning.PRAG_TODO.entity.LogIn;
-import JavaGrundFortsattning.PRAG_TODO.service.LogInService;
+import JavaGrundFortsattning.PRAG_TODO.service.AuthService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping("/auth")
+//@CrossOrigin(origins = "http://localhost:3000")
 public class LogInController {
 
-    private final LogInService logInService;
+    private final AuthService authService;
 
-    public LogInController(LogInService logInService) {
-        this.logInService = logInService;
+    public LogInController(AuthService authService) {
+        this.authService = authService;
     }
 
     @PostMapping("/register")
     public String register(@RequestBody LogInDto dto) {
-        logInService.register(dto);
+        System.out.println("3£#############################################################################" +dto.getUsername());
+        authService.register(dto);
         return "User registered";
     }
 
     @PostMapping("/login")
     public LogIn login(@RequestBody LogInDto dto) {
-        return logInService.login(dto);
+        return authService.login(dto);
     }
 }
