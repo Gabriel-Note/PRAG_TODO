@@ -32,7 +32,7 @@ public class TaskListService {
         return tasklistRepository.save(taskList);
     }
 
-    private TaskList getTaskListById(int id) {
+    public TaskList getTaskListById(int id) {
         Optional<TaskList> optional = tasklistRepository.findById(id);
 
         if(optional.isPresent()) {

@@ -36,9 +36,6 @@ public class TaskListController {
 
     }
 
-    @PutMapping
-    public ResponseEntity<?> updateTaskList(@RequestBody String name) {}
-
     @PutMapping("/{id}")
     public ResponseEntity<?> renameTaskList(@PathVariable int id, @RequestBody String newName) {
         try {
