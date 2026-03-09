@@ -42,4 +42,8 @@ public class TaskListService {
         }
     }
 
+    public void deleteTaskList(int id) {
+        tasklistRepository.deleteById(id);
+    }
+
 }

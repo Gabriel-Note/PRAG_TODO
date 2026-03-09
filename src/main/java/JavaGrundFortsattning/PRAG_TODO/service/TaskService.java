@@ -2,7 +2,9 @@ package JavaGrundFortsattning.PRAG_TODO.service;
 
 import JavaGrundFortsattning.PRAG_TODO.dto.TaskDto;
 import JavaGrundFortsattning.PRAG_TODO.entity.Task;
+import JavaGrundFortsattning.PRAG_TODO.entity.TaskList;
 import JavaGrundFortsattning.PRAG_TODO.repository.TaskRepository;
+import JavaGrundFortsattning.PRAG_TODO.repository.TasklistRepository;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +15,11 @@ import java.util.Optional;
 @Service
 public class TaskService {
     private final TaskRepository taskRepository;
+    private final TasklistRepository tasklistRepository;
 
-    public TaskService(TaskRepository taskRepository) {
+    public TaskService(TaskRepository taskRepository, TasklistRepository tasklistRepository) {
         this.taskRepository = taskRepository;
+        this.tasklistRepository = tasklistRepository;
     }
 
     public List<TaskDto> getAllTasks(){
@@ -45,6 +49,10 @@ public class TaskService {
 
         Task task = new Task();
         task.setDescription(taskDto.getDescription());
+
+        TaskList taskList = tasklistRepository.findById(taskDto.getTaskListId()).
+                orElseThrow(() -> new RuntimeException("List not found"));
+        task.setTaskList(taskList);
 
         return taskRepository.save(task);
     }

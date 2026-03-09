@@ -50,5 +50,12 @@ public class Task {
         this.completed = completed;
     }
 
+    public TaskList getTaskList() {
+        return taskList;
+    }
+
+    public void setTaskList(TaskList taskList) {
+        this.taskList = taskList;
+    }
 
 }

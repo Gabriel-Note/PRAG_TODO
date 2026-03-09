@@ -4,6 +4,7 @@ public class TaskDto {
     private Integer id;
     private String description;
     private boolean completed;
+    private Integer taskListId;
 
     public TaskDto() {
     }
@@ -34,5 +35,13 @@ public class TaskDto {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+
+    public Integer getTaskListId() {
+        return taskListId;
+    }
+
+    public void setTaskListId(Integer taskListId) {
+        this.taskListId = taskListId;
     }
 }
