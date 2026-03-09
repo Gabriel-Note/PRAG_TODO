@@ -1,9 +1,6 @@
 package JavaGrundFortsattning.PRAG_TODO.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Task {
@@ -20,6 +17,10 @@ public class Task {
         this.id = id;
         this.description = description;
     }
+
+    @ManyToOne
+    @JoinColumn(name="task_list_id")
+    private TaskList taskList;
 
     public int getId() {
         return id;
@@ -48,4 +49,6 @@ public class Task {
     public void setCompleted(boolean completed) {
         this.completed = completed;
     }
+
+
 }
