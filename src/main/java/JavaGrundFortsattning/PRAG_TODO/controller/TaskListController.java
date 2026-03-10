@@ -1,5 +1,6 @@
 package JavaGrundFortsattning.PRAG_TODO.controller;
 
+import JavaGrundFortsattning.PRAG_TODO.entity.Task;
 import JavaGrundFortsattning.PRAG_TODO.entity.TaskList;
 import JavaGrundFortsattning.PRAG_TODO.service.TaskListService;
 import org.springframework.http.HttpStatus;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/tasklists")
-
+@CrossOrigin(origins="http://localhost:3000")
 public class TaskListController {
 
     private final TaskListService taskListService;
@@ -20,7 +21,6 @@ public class TaskListController {
     }
 
     @GetMapping
-    @CrossOrigin(origins="http://localhost:3000")
     public List<TaskList> getAllTaskList() {
         return taskListService.getAllTaskLists();
     }
@@ -53,6 +53,17 @@ public class TaskListController {
             return ResponseEntity.noContent().build();
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ett oväntat fel uppstod"+e.getMessage());
+        }
+    }
+
+    @GetMapping("/{id}/tasks")
+    public ResponseEntity<?> getTasksByList(@PathVariable int id) {
+        try {
+            List<Task> tasks = taskListService.getTasksByListId(id);
+            return ResponseEntity.ok(tasks);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Ett oväntat fel uppstod: " + e.getMessage());
         }
     }
 

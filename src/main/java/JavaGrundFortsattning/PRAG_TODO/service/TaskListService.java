@@ -1,5 +1,6 @@
 package JavaGrundFortsattning.PRAG_TODO.service;
 
+import JavaGrundFortsattning.PRAG_TODO.entity.Task;
 import JavaGrundFortsattning.PRAG_TODO.entity.TaskList;
 import JavaGrundFortsattning.PRAG_TODO.repository.TasklistRepository;
 import org.springframework.stereotype.Service;
@@ -46,4 +47,8 @@ public class TaskListService {
         tasklistRepository.deleteById(id);
     }
 
+    public List<Task> getTasksByListId(int id) {
+        TaskList taskList = getTaskListById(id);
+        return taskList.getTasks();
+    }
 }

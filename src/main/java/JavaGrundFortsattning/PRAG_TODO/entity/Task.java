@@ -1,5 +1,6 @@
 package JavaGrundFortsattning.PRAG_TODO.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -50,6 +51,7 @@ public class Task {
         this.completed = completed;
     }
 
+    @JsonIgnore
     public TaskList getTaskList() {
         return taskList;
     }
