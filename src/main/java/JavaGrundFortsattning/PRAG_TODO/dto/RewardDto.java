@@ -1,0 +1,20 @@
+package JavaGrundFortsattning.PRAG_TODO.dto;
+
+public class RewardDto {
+    private Integer id;
+    private String message;
+    private Integer pointsNeeded;
+
+
+    public Integer getId() {return id;}
+
+    public void setId(Integer id) {this.id = id;}
+
+    public String getMessage() {return message;}
+
+    public void setMessage(String message) {this.message = message;}
+
+    public Integer getPointsNeeded() {return pointsNeeded;}
+
+    public void setPointsNeeded(Integer pointsNeeded) {this.pointsNeeded = pointsNeeded;}
+}
