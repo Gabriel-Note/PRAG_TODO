@@ -5,6 +5,7 @@ public class TaskDto {
     private String description;
     private boolean completed;
     private Integer taskListId;
+    private Integer points;
 
     public TaskDto() {
     }
@@ -44,4 +45,9 @@ public class TaskDto {
     public void setTaskListId(Integer taskListId) {
         this.taskListId = taskListId;
     }
+
+    public int getPoints() {return points;}
+
+    public void setPoints(int points){ this.points = points;}
+
 }

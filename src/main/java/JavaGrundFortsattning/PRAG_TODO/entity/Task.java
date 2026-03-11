@@ -2,6 +2,10 @@ package JavaGrundFortsattning.PRAG_TODO.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class Task {
@@ -10,6 +14,7 @@ public class Task {
     private Integer id;
     private String description;
     private boolean completed;
+    private Integer points;
 
     public Task() {
     }
@@ -59,5 +64,8 @@ public class Task {
     public void setTaskList(TaskList taskList) {
         this.taskList = taskList;
     }
+    public int getPoints() {return points;}
 
+    public void setPoints(int points){ this.points = points;
+    }
 }
