@@ -26,6 +26,7 @@ public class TaskService {
             taskDto.setId(task.getId());
             taskDto.setDescription(task.getDescription());
             taskDto.setCompleted(task.isCompleted());
+            taskDto.setPoints(task.getPoints());
             taskDtoList.add(taskDto);
         }
         return taskDtoList;
@@ -45,6 +46,7 @@ public class TaskService {
 
         Task task = new Task();
         task.setDescription(taskDto.getDescription());
+        task.setPoints(taskDto.getPoints());
 
         return taskRepository.save(task);
     }
@@ -54,6 +56,7 @@ public class TaskService {
 
         Task task = getTaskById(id);
         task.setDescription(taskDescription);
+        task.setPoints(taskDto.getPoints());
         return taskRepository.save(task);
     }
 
