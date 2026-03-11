@@ -10,7 +10,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
-    # 2. Explicitly tell Hibernate to manage tables
+    hibernate: # 2. Explicitly tell Hibernate to manage tables
     ddl-auto: update
     # 3. Explicitly set the SQL dialect for MySQL 8
     database-platform: org.hibernate.dialect.MySQLDialect # Use the generic one for better compatibility

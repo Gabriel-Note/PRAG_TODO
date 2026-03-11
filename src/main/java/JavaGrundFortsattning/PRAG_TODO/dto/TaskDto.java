@@ -4,6 +4,7 @@ public class TaskDto {
     private Integer id;
     private String description;
     private boolean completed;
+    private Integer points;
 
     public TaskDto() {
     }
@@ -35,4 +36,8 @@ public class TaskDto {
     public void setCompleted(boolean completed) {
         this.completed = completed;
     }
+
+    public int getPoints() {return points;}
+
+    public void setPoints(int points){ this.points = points;}
 }
