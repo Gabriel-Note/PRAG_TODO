@@ -1,5 +1,7 @@
 package JavaGrundFortsattning.PRAG_TODO.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,6 +23,10 @@ public class Task {
         this.id = id;
         this.description = description;
     }
+
+    @ManyToOne
+    @JoinColumn(name="task_list_id")
+    private TaskList taskList;
 
     public int getId() {
         return id;
@@ -48,6 +54,15 @@ public class Task {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+
+    @JsonIgnore
+    public TaskList getTaskList() {
+        return taskList;
+    }
+
+    public void setTaskList(TaskList taskList) {
+        this.taskList = taskList;
     }
     public int getPoints() {return points;}
 
