@@ -51,6 +51,7 @@ CREATE TABLE `task` (
   `description` varchar(255) NOT NULL,
   `completed` tinyint(1) NOT NULL DEFAULT '0',
   `task_list_id` int NOT NULL,
+  `points` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_task_list_id_idx` (`task_list_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=220 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -62,7 +63,7 @@ CREATE TABLE `task` (
 
 LOCK TABLES `task` WRITE;
 /*!40000 ALTER TABLE `task` DISABLE KEYS */;
-INSERT INTO `task` VALUES (1,'ut med hunden',0,0),(2,'handla marmelad',1,0),(3,'Städa köket igen',1,0),(4,'köpa te från CityGross',1,0),(5,'köpa mer te från CityGross',0,0),(6,'köpa mjölk från ica',0,0),(7,'köpa mjöl',1,0),(218,'hejsan igen ',0,0);
+INSERT INTO `task` VALUES (1,'ut med hunden',0,0,0),(2,'handla marmelad',1,0,0),(3,'Städa köket igen',1,0,0),(4,'köpa te från CityGross',1,0,0),(5,'köpa mer te från CityGross',0,0,0),(6,'köpa mjölk från ica',0,0,0),(7,'köpa mjöl',1,0,0),(218,'hejsan igen ',0,0,0);
 /*!40000 ALTER TABLE `task` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,7 +86,6 @@ CREATE TABLE `task_list` (
 --
 
 LOCK TABLES `task_list` WRITE;
-INSERT INTO `task_list` VALUES (1, 'Min lista');
 /*!40000 ALTER TABLE `task_list` DISABLE KEYS */;
 /*!40000 ALTER TABLE `task_list` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -124,4 +124,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-03-11 12:49:49
+-- Dump completed on 2026-03-11 13:33:21
