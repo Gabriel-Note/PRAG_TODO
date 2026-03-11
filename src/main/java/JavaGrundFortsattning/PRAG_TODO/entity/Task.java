@@ -10,14 +10,15 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String task;
+    private String description;
+    private boolean completed;
 
     public Task() {
     }
 
-    public Task(int id, String task) {
+    public Task(int id, String description) {
         this.id = id;
-        this.task = task;
+        this.description = description;
     }
 
     public int getId() {
@@ -28,11 +29,23 @@ public class Task {
         this.id = id;
     }
 
-    public String getTask() {
-        return task;
+    public String getDescription() {
+        return description;
     }
 
-    public void setTask(String task) {
-        this.task = task;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 }

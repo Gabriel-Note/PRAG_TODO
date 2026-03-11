@@ -23,7 +23,7 @@ public class TaskController {
 
     @GetMapping
     @CrossOrigin(origins = "http://localhost:3000")
-    public List<Task> GetAllTasks(){
+    public List<TaskDto> getAllTasks(){
         return taskService.getAllTasks();
     }
 
@@ -51,12 +51,34 @@ public class TaskController {
         }
         catch (DataAccessException e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Kunde inte ändra task i databasen" + e.getMessage());
+                    .body("Kunde inte ändra task i databasen: " + e.getMessage());
         }
         catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Ett oväntat fel uppstod" + e.getMessage());
+                    .body("Ett oväntat fel uppstod: " + e.getMessage());
         }
+    }
+
+    @PutMapping("/changeCompleted/{id}")
+    public ResponseEntity<?> makeCompletedOrNotCompleted(@PathVariable int id){
+        try{
+            Task task = taskService.makeCompletedOrNotCompleted(id);
+            return ResponseEntity.status(HttpStatus.CREATED).body(task);
+
+        }
+        catch (DataAccessException e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Kunde inte ändra comlpeted i databasen: " + e.getMessage());
+        }
+        catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Ett oväntat fel uppstod: " + e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteTask(@PathVariable int id) {
+        taskService.deleteTask(id);
     }
 
 }
