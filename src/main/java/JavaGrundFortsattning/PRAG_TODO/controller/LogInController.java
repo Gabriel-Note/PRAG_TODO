@@ -18,7 +18,6 @@ public class LogInController {
 
     @PostMapping("/register")
     public String register(@RequestBody LogInDto dto) {
-        System.out.println("3£#############################################################################" +dto.getUsername());
         authService.register(dto);
         return "User registered";
     }
