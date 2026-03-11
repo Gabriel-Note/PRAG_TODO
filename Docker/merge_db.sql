@@ -85,6 +85,7 @@ CREATE TABLE `task_list` (
 --
 
 LOCK TABLES `task_list` WRITE;
+INSERT INTO `task_list` VALUES (1, 'Min lista');
 /*!40000 ALTER TABLE `task_list` DISABLE KEYS */;
 /*!40000 ALTER TABLE `task_list` ENABLE KEYS */;
 UNLOCK TABLES;
