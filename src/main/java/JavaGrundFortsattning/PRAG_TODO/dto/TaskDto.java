@@ -4,8 +4,8 @@ public class TaskDto {
     private Integer id;
     private String description;
     private boolean completed;
-    private Integer taskListId;
-    private Integer points;
+    private int taskListId;
+    private int points;
 
     public TaskDto() {
     }

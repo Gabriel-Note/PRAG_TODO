@@ -13,7 +13,7 @@ public class Reward {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String message;
-    private Integer pointsNeeded;
+    private int pointsNeeded;
 
 
     public Integer getId() {return id;}

@@ -14,7 +14,11 @@ public class Task {
     private Integer id;
     private String description;
     private boolean completed;
-    private Integer points;
+    private int points;
+
+    @ManyToOne
+    @JoinColumn(name="task_list_id")
+    private TaskList taskList;
 
     public Task() {
     }
@@ -23,10 +27,6 @@ public class Task {
         this.id = id;
         this.description = description;
     }
-
-    @ManyToOne
-    @JoinColumn(name="task_list_id")
-    private TaskList taskList;
 
     public int getId() {
         return id;
