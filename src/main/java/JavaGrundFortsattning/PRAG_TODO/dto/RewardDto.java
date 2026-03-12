@@ -3,7 +3,7 @@ package JavaGrundFortsattning.PRAG_TODO.dto;
 public class RewardDto {
     private Integer id;
     private String message;
-    private Integer pointsNeeded;
+    private int pointsNeeded;
 
 
     public Integer getId() {return id;}

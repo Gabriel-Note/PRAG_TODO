@@ -13,7 +13,7 @@ public class Reward {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String message;
-    private Integer pointsNeeded;
+    private int pointsNeeded;
 
 
     public Integer getId() {return id;}
@@ -24,7 +24,7 @@ public class Reward {
 
     public void setMessage(String message) {this.message = message;}
 
-    public Integer getPointsNeeded() {return pointsNeeded;}
+    public int getPointsNeeded() {return pointsNeeded;}
 
     public void setPointsNeeded(Integer pointsNeeded) {this.pointsNeeded = pointsNeeded;}
 }

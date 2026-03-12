@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static java.util.Objects.isNull;
+
 @Service
 public class TaskService {
     private final TaskRepository taskRepository;
@@ -50,8 +52,12 @@ public class TaskService {
 
         Task task = new Task();
         task.setDescription(taskDto.getDescription());
-        task.setPoints(taskDto.getPoints());
-
+        if(!isNull(taskDto.getPoints())){
+            task.setPoints(taskDto.getPoints());
+        }
+        else{
+            task.setPoints(0);
+        }
         TaskList taskList = tasklistRepository.findById(taskDto.getTaskListId()).
                 orElseThrow(() -> new RuntimeException("List not found"));
         task.setTaskList(taskList);
@@ -64,7 +70,9 @@ public class TaskService {
 
         Task task = getTaskById(id);
         task.setDescription(taskDescription);
-        task.setPoints(taskDto.getPoints());
+        if(!isNull(taskDto.getPoints())){
+            task.setPoints(taskDto.getPoints());
+        }
         return taskRepository.save(task);
     }
 
