@@ -64,6 +64,7 @@ public class Task {
     public void setTaskList(TaskList taskList) {
         this.taskList = taskList;
     }
+
     public int getPoints() {return points;}
 
     public void setPoints(int points){ this.points = points;
